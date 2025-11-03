@@ -7,25 +7,30 @@
   
   <!-- Meta Pixel Code (evento de Purchase) -->
   <script>
-    !function(f,b,e,v,n,t,s) {
-      if(f.fbq)return; n=f.fbq=function(){
-        n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
-      };
-      if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
-      t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)
-    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    // Verifica se o evento Purchase já foi disparado
+    if (!localStorage.getItem('purchaseTracked')) {
+      // Inicia o Pixel com o ID
+      !function(f,b,e,v,n,t,s) {
+        if(f.fbq)return; n=f.fbq=function(){
+          n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+        };
+        if(!f._fbq)f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+        t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
     
-    // Inicia o Pixel com o ID
-    fbq('init', '812149301989975'); // Substitua pelo seu Pixel ID real
+      // Dispara o evento de Purchase
+      fbq('init', '812149301989975'); // Substitua pelo seu Pixel ID real
+      fbq('track', 'Purchase', {value: 20.00, currency: 'BRL'}); // Ajuste o valor conforme necessário
     
-    // Dispara o evento de Purchase
-    fbq('track', 'Purchase', {value: 20.00, currency: 'BRL'}); // Ajuste o valor conforme necessário
+      // Marca no localStorage para garantir que o evento não seja disparado novamente
+      localStorage.setItem('purchaseTracked', 'true');
+    }
     
-    // Atraso de 4 segundos antes de redirecionar para permitir que o evento seja processado
+    // Atraso de 4 segundos antes de redirecionar
     setTimeout(function(){
       window.location.href = "https://entre-na-chamada-agora.netlify.app";
-    }, 4000); // 4 segundos de atraso para garantir que o evento de Purchase seja disparado
+    }, 4000); // 4 segundos de atraso
   </script>
 
   <noscript>
