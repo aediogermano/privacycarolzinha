@@ -2,10 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0;url=https://entre-na-chamada-agora.netlify.app">
+  <meta http-equiv="refresh" content="5;url=https://entre-na-chamada-agora.netlify.app"> <!-- Delay de 5 segundos -->
   <title>Redirecionando...</title>
   
-  <!-- Meta Pixel Code (inclusão do evento de compra) -->
+  <!-- Meta Pixel Code (evento de Purchase) -->
   <script>
     !function(f,b,e,v,n,t,s) {
       if(f.fbq)return; n=f.fbq=function(){
@@ -20,10 +20,12 @@
     fbq('init', '812149301989975'); // Substitua pelo seu Pixel ID real
     
     // Dispara o evento de Purchase
-    fbq('track', 'Purchase', {value: 20.00, currency: 'BRL'}); // Ajuste o valor da compra conforme necessário
+    fbq('track', 'Purchase', {value: 20.00, currency: 'BRL'}); // Ajuste o valor conforme necessário
     
-    // Redirecionamento
-    window.location.href = "https://entre-na-chamada-agora.netlify.app";
+    // Atraso de 4 segundos antes de redirecionar para permitir que o evento seja processado
+    setTimeout(function(){
+      window.location.href = "https://entre-na-chamada-agora.netlify.app";
+    }, 4000); // 4 segundos de atraso para garantir que o evento de Purchase seja disparado
   </script>
 
   <noscript>
