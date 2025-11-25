@@ -37,18 +37,19 @@
       max-width: 300px;
     }
   </style>
-
   <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s) {
-      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(f.fbq)return;n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+      };
       if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)
     }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
     fbq('init', '1279775006873413');
     fbq('track', 'PageView');
   </script>
@@ -58,17 +59,17 @@
   </noscript>
   <!-- End Meta Pixel Code -->
 
+  <!-- Dispara o evento de Purchase antes do redirecionamento -->
   <script>
-    // Dispara o evento de "Purchase" quando a página carrega pela primeira vez (1x por browser)
-    if (!localStorage.getItem('purchaseTracked')) {
+    document.addEventListener("DOMContentLoaded", function () {
+      // Dispara o evento imediatamente
       fbq('track', 'Purchase', { value: 10.00, currency: 'BRL' });
-      localStorage.setItem('purchaseTracked', 'true');
-    }
 
-    // Redireciona após 5 segundos
-    setTimeout(() => {
-      window.location.href = "https://drive.google.com/drive/folders/1aWK8vBms4MAfrO1qEiT0_5h9OUNBMwkE?usp=sharing";
-    }, 5000);
+      // Redireciona com leve atraso para garantir envio
+      setTimeout(() => {
+        window.location.href = "https://drive.google.com/drive/folders/1aWK8vBms4MAfrO1qEiT0_5h9OUNBMwkE?usp=sharing";
+      }, 3000); // reduzido para 3 segundos para melhorar conversão sem perder tracking
+    });
   </script>
 </head>
 <body>
