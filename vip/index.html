@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="facebook-domain-verification" content="3zlio4uoi23rwazwim5dpxtwobvat2" />
   <title>Carolina Andrade</title>
   <style>
     body {
@@ -36,7 +37,6 @@
       max-width: 300px;
     }
   </style>
-
   <!-- Pixel Meta Ads -->
   <script>
     !function(f,b,e,v,n,t,s) {
@@ -53,22 +53,17 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)
     }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
     fbq('init', '1279775006873413');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
          src="https://www.facebook.com/tr?id=812149301989975&ev=PageView&noscript=1"/>
   </noscript>
-
   <script>
-    // Verifica se o evento 'Purchase' já foi registrado
     if (!localStorage.getItem('purchaseTracked')) {
       fbq('track', 'Purchase', {value: 10.00, currency: 'BRL'});
       localStorage.setItem('purchaseTracked', 'true');
     }
-
-    // Redireciona o usuário após 5 segundos
     setTimeout(() => {
       window.location.href = "https://drive.google.com/drive/folders/1aWK8vBms4MAfrO1qEiT0_5h9OUNBMwkE?usp=sharing";
     }, 5000);
