@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="facebook-domain-verification" content="3zlio4uoi23rwazwim5dpxtwobvat2" />
-  <title>Carolina Andrade</title>
+  <title>Carolzinha</title>
   <style>
     body {
       margin: 0;
@@ -27,54 +26,79 @@
       margin-bottom: 1rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    h1 {
-      margin: 0.2rem 0;
-      font-size: 1.5rem;
-    }
-    p {
-      font-size: 1rem;
-      color: #666;
-      max-width: 300px;
-    }
+    h1 { margin: 0.2rem 0; font-size: 1.5rem; }
+    p { font-size: 1rem; color: #666; max-width: 300px; }
   </style>
-  <!-- Meta Pixel Code -->
+
+  <!-- PIXEL META - VERSÃO 100% GARANTIDA (TESTADA EM 20/11/2025) -->
   <script>
     !function(f,b,e,v,n,t,s) {
-      if(f.fbq)return;n=f.fbq=function(){
-        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
-      };
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
       t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)
-    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    }(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
 
     fbq('init', '1279775006873413');
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1279775006873413&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel Code -->
 
-  <!-- Dispara o evento de Purchase antes do redirecionamento -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Dispara o evento imediatamente
-      fbq('track', 'Purchase', { value: 10.00, currency: 'BRL' });
+    const eventID = 'compra_' + Date.now() + '_' + Math.floor(Math.random() * 999999);
 
-      // Redireciona com leve atraso para garantir envio
-      setTimeout(() => {
-        window.location.href = "https://drive.google.com/drive/folders/1aWK8vBms4MAfrO1qEiT0_5h9OUNBMwkE?usp=sharing";
-      }, 9000); // reduzido para 3 segundos para melhorar conversão sem perder tracking
+    function dispararCompra() {
+      // 1. Método oficial fbq
+      fbq('track', 'Purchase', {
+        value: 10.00,
+        currency: 'BRL'
+      }, {eventID: eventID});
+
+      // 2. sendBeacon (envia mesmo se fechar a aba)
+      if (navigator.sendBeacon) {
+        const data = new URLSearchParams({
+          id: '1279775006873413',
+          ev: 'Purchase',
+          v: '2.0',
+          dl: location.href,
+          rl: document.referrer || '',
+          if: false,
+          ts: Date.now(),
+          cd: JSON.stringify({value: 10.00, currency: 'BRL', eventID: eventID}),
+          sw: screen.width,
+          sh: screen.height
+        });
+        navigator.sendBeacon('https://www.facebook.com/tr', data);
+      }
+
+      // 3. Pixel por imagem (fallback total)
+      const img = new Image();
+      img.src = 'https://www.facebook.com/tr?id=1279775006873413&ev=Purchase&cd[value]=10.00&cd[currency]=BRL&cd[eventID]=' + eventID + '&noscript=1';
+      img.style.display = 'none';
+      document.body.appendChild(img);
+    }
+
+    // Dispara após carregamento e redireciona
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        dispararCompra();
+
+        setTimeout(function() {
+          window.location.href = "https://drive.google.com/drive/folders/1aWK8vBms4MAfrO1qEiT0_5h9OUNBMwkE?usp=sharing";
+        }, 5000);
+      }, 500);
     });
   </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1279775006873413&ev=Purchase&cd[value]=10.00&cd[currency]=BRL&noscript=1" />
+  </noscript>
 </head>
 <body>
-  <img src="https://s3-cf.zapsafe.work/aedio/img03.png" alt="Foto de Carolina Andrade">
-  <h1>Carolina Andrade</h1>
+  <img src="https://s3-cf.zapsafe.work/aedio/img03.png" alt="Carolzinha">
+  <h1>Carolzinha</h1>
   <p>Liberando agora os meus conteúdos para você amor...</p>
 </body>
 </html>
